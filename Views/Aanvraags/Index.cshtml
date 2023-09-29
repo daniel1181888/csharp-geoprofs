@@ -1,0 +1,80 @@
+﻿@model IEnumerable<C_Geoproffs.Models.Aanvraag>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Verlof aanvraag</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Aanvraags" asp-action="Index">
+    <p>
+        Naam: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Verdeling)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BeginDatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EindDatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reden)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Verdeling)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeginDatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EindDatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reden)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using C_Geoproffs.Data;
 namespace C_Geoproffs
 {
     public class Program
@@ -5,6 +8,8 @@ namespace C_Geoproffs
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<C_GeoproffsContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("C_GeoproffsContext") ?? throw new InvalidOperationException("Connection string 'C_GeoproffsContext' not found.")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
